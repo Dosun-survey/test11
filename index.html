@@ -1,248 +1,248 @@
-!DOCTYPE html
-html lang=ko
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    title측량 및 지형공간정보 산업기사 모의 테스트title
-    script src=httpscdn.tailwindcss.comscript
-    style
-        @import url('httpsfonts.googleapis.comcss2family=Noto+Sans+KRwght@300;400;700&display=swap');
-        body { font-family 'Noto Sans KR', sans-serif; background-color #f3f4f6; }
-        .quadrant { min-height 200px; transition transform 0.2s; }
-        .quadranthover { transform translateY(-5px); }
-    style
-head
-body class=p-4 mdp-8
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>측량 및 지형공간정보 산업기사 모의 테스트</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f3f4f6; }
+        .quadrant { min-height: 200px; transition: transform 0.2s; }
+        .quadrant:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="p-4 md:p-8">
 
-    !-- 메인 컨테이너 --
-    div id=app class=max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden min-h-[600px] flex flex-col
+    <!-- 메인 컨테이너 -->
+    <div id="app" class="max-w-4xl mx-auto bg-white shadow-2xl rounded-2xl overflow-hidden min-h-[600px] flex flex-col">
         
-        !-- 헤더 영역 --
-        header class=bg-indigo-700 text-white py-8 px-4 text-center
-            h1 class=text-xl mdtext-3xl font-bold leading-tight
-                [과정평가형] 측량 및 지형공간정보 산업기사br모의 테스트
-            h1
-        header
+        <!-- 헤더 영역 -->
+        <header class="bg-indigo-700 text-white py-8 px-4 text-center">
+            <h1 class="text-xl md:text-3xl font-bold leading-tight">
+                [과정평가형] 측량 및 지형공간정보 산업기사<br>모의 테스트
+            </h1>
+        </header>
 
-        !-- 콘텐츠 영역 --
-        main id=content class=flex-grow p-6
-            !-- 1단계 과정 선택 화면 --
-            div id=step-1 class=text-center py-12
-                p class=text-lg text-gray-600 mb-8아래에서 본인의 과정을 선택해 주세요p
-                button onclick=showDashboard() class=bg-indigo-600 hoverbg-indigo-700 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-lg transition-all transform hoverscale-105 activescale-95
+        <!-- 콘텐츠 영역 -->
+        <main id="content" class="flex-grow p-6">
+            <!-- 1단계: 과정 선택 화면 -->
+            <div id="step-1" class="text-center py-12">
+                <p class="text-lg text-gray-600 mb-8">아래에서 본인의 과정을 선택해 주세요</p>
+                <button onclick="showDashboard()" class="bg-indigo-600 hover:bg-indigo-700 text-white text-2xl font-bold py-4 px-12 rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95">
                     2025 B
-                button
-            div
+                </button>
+            </div>
 
-            !-- 2단계 4분할 대시보드 화면 (Hidden 초기상태) --
-            div id=step-2 class=hidden h-full
-                div class=grid grid-cols-1 mdgrid-cols-2 gap-6 h-full
-                    !-- 평면기준점 --
-                    div class=quadrant bg-blue-50 border-2 border-blue-200 rounded-xl p-6 flex flex-col justify-between items-center text-center
-                        h3 class=text-xl font-bold text-blue-800평면기준점 측량h3
-                        p class=text-sm text-blue-600 my-2다각, 삼각, 거리 및 각 관측 등p
-                        button onclick=startQuiz('평면기준점측량') class=w-full mt-4 bg-blue-600 text-white py-3 rounded-lg font-bold hoverbg-blue-700시험 시작button
-                    div
-                    !-- 수준점 --
-                    div class=quadrant bg-green-50 border-2 border-green-200 rounded-xl p-6 flex flex-col justify-between items-center text-center
-                        h3 class=text-xl font-bold text-green-800수준점 측량h3
-                        p class=text-sm text-green-600 my-2직접간접 수준측량 및 오차보정p
-                        button onclick=startQuiz('수준점측량') class=w-full mt-4 bg-green-600 text-white py-3 rounded-lg font-bold hoverbg-green-700시험 시작button
-                    div
-                    !-- 지상현황 --
-                    div class=quadrant bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 flex flex-col justify-between items-center text-center
-                        h3 class=text-xl font-bold text-yellow-800지상현황 측량h3
-                        p class=text-sm text-yellow-600 my-2지형 정보 수집 및 수치지도 제작p
-                        button onclick=startQuiz('지상현황측량') class=w-full mt-4 bg-yellow-600 text-white py-3 rounded-lg font-bold hoverbg-yellow-700시험 시작button
-                    div
-                    !-- 노선 --
-                    div class=quadrant bg-purple-50 border-2 border-purple-200 rounded-xl p-6 flex flex-col justify-between items-center text-center
-                        h3 class=text-xl font-bold text-purple-800노선 측량h3
-                        p class=text-sm text-purple-600 my-2종·횡단면도 및 곡선 설치p
-                        button onclick=startQuiz('노선측량') class=w-full mt-4 bg-purple-600 text-white py-3 rounded-lg font-bold hoverbg-purple-700시험 시작button
-                    div
-                div
-                div class=text-center mt-8
-                    button onclick=goBackToHome() class=text-gray-500 underline처음으로 돌아가기button
-                div
-            div
+            <!-- 2단계: 4분할 대시보드 화면 (Hidden 초기상태) -->
+            <div id="step-2" class="hidden h-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 h-full">
+                    <!-- 평면기준점 -->
+                    <div class="quadrant bg-blue-50 border-2 border-blue-200 rounded-xl p-6 flex flex-col justify-between items-center text-center">
+                        <h3 class="text-xl font-bold text-blue-800">평면기준점 측량</h3>
+                        <p class="text-sm text-blue-600 my-2">다각, 삼각, 거리 및 각 관측 등</p>
+                        <button onclick="startQuiz('평면기준점측량')" class="w-full mt-4 bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700">시험 시작</button>
+                    </div>
+                    <!-- 수준점 -->
+                    <div class="quadrant bg-green-50 border-2 border-green-200 rounded-xl p-6 flex flex-col justify-between items-center text-center">
+                        <h3 class="text-xl font-bold text-green-800">수준점 측량</h3>
+                        <p class="text-sm text-green-600 my-2">직접/간접 수준측량 및 오차보정</p>
+                        <button onclick="startQuiz('수준점측량')" class="w-full mt-4 bg-green-600 text-white py-3 rounded-lg font-bold hover:bg-green-700">시험 시작</button>
+                    </div>
+                    <!-- 지상현황 -->
+                    <div class="quadrant bg-yellow-50 border-2 border-yellow-200 rounded-xl p-6 flex flex-col justify-between items-center text-center">
+                        <h3 class="text-xl font-bold text-yellow-800">지상현황 측량</h3>
+                        <p class="text-sm text-yellow-600 my-2">지형 정보 수집 및 수치지도 제작</p>
+                        <button onclick="startQuiz('지상현황측량')" class="w-full mt-4 bg-yellow-600 text-white py-3 rounded-lg font-bold hover:bg-yellow-700">시험 시작</button>
+                    </div>
+                    <!-- 노선 -->
+                    <div class="quadrant bg-purple-50 border-2 border-purple-200 rounded-xl p-6 flex flex-col justify-between items-center text-center">
+                        <h3 class="text-xl font-bold text-purple-800">노선 측량</h3>
+                        <p class="text-sm text-purple-600 my-2">종·횡단면도 및 곡선 설치</p>
+                        <button onclick="startQuiz('노선측량')" class="w-full mt-4 bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700">시험 시작</button>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <button onclick="goBackToHome()" class="text-gray-500 underline">처음으로 돌아가기</button>
+                </div>
+            </div>
 
-            !-- 3단계 시험 문제 화면 (Hidden 초기상태) --
-            div id=step-3 class=hidden flex flex-col h-full
-                div class=mb-4 flex justify-between items-center border-b pb-2
-                    span id=quiz-category class=font-bold text-indigo-700span
-                    span id=quiz-progress class=text-sm bg-gray-200 px-3 py-1 rounded-full text-gray-700 font-mediumspan
-                div
+            <!-- 3단계: 시험 문제 화면 (Hidden 초기상태) -->
+            <div id="step-3" class="hidden flex flex-col h-full">
+                <div class="mb-4 flex justify-between items-center border-b pb-2">
+                    <span id="quiz-category" class="font-bold text-indigo-700"></span>
+                    <span id="quiz-progress" class="text-sm bg-gray-200 px-3 py-1 rounded-full text-gray-700 font-medium"></span>
+                </div>
                 
-                div class=py-4
-                    span id=quiz-unit class=text-xs uppercase tracking-wider text-gray-400 font-bold block mb-1span
-                    h2 id=quiz-question class=text-xl font-bold text-gray-800 mb-6 min-h-[60px]h2
+                <div class="py-4">
+                    <span id="quiz-unit" class="text-xs uppercase tracking-wider text-gray-400 font-bold block mb-1"></span>
+                    <h2 id="quiz-question" class="text-xl font-bold text-gray-800 mb-6 min-h-[60px]"></h2>
                     
-                    div id=quiz-options class=space-y-3
-                        !-- 보기 버튼들이 여기에 생성됨 --
-                    div
+                    <div id="quiz-options" class="space-y-3">
+                        <!-- 보기 버튼들이 여기에 생성됨 -->
+                    </div>
 
-                    div id=hint-box class=mt-6 hidden bg-orange-50 border border-orange-200 p-4 rounded-lg
-                        p class=text-orange-700 text-sm💡 span class=font-bold힌트span span id=hint-textspanp
-                    div
-                div
-            div
+                    <div id="hint-box" class="mt-6 hidden bg-orange-50 border border-orange-200 p-4 rounded-lg">
+                        <p class="text-orange-700 text-sm">💡 <span class="font-bold">힌트:</span> <span id="hint-text"></span></p>
+                    </div>
+                </div>
+            </div>
 
-            !-- 4단계 결과 페이지 (Hidden 초기상태) --
-            div id=step-4 class=hidden
-                h2 class=text-2xl font-bold text-center text-gray-800 mb-8시험 종료 결과h2
+            <!-- 4단계: 결과 페이지 (Hidden 초기상태) -->
+            <div id="step-4" class="hidden">
+                <h2 class="text-2xl font-bold text-center text-gray-800 mb-8">시험 종료 결과</h2>
                 
-                div class=grid grid-cols-3 gap-4 mb-8
-                    div class=bg-gray-100 p-4 rounded-xl text-center
-                        p class=text-sm text-gray-500 mb-1 font-bold푼 문제 수p
-                        p id=res-total class=text-2xl font-black text-gray-800p
-                    div
-                    div class=bg-blue-100 p-4 rounded-xl text-center
-                        p class=text-sm text-blue-500 mb-1 font-bold정답p
-                        p id=res-correct class=text-2xl font-black text-blue-600p
-                    div
-                    div class=bg-red-100 p-4 rounded-xl text-center
-                        p class=text-sm text-red-500 mb-1 font-bold오답p
-                        p id=res-wrong class=text-2xl font-black text-red-600p
-                    div
-                div
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div class="bg-gray-100 p-4 rounded-xl text-center">
+                        <p class="text-sm text-gray-500 mb-1 font-bold">푼 문제 수</p>
+                        <p id="res-total" class="text-2xl font-black text-gray-800"></p>
+                    </div>
+                    <div class="bg-blue-100 p-4 rounded-xl text-center">
+                        <p class="text-sm text-blue-500 mb-1 font-bold">정답</p>
+                        <p id="res-correct" class="text-2xl font-black text-blue-600"></p>
+                    </div>
+                    <div class="bg-red-100 p-4 rounded-xl text-center">
+                        <p class="text-sm text-red-500 mb-1 font-bold">오답</p>
+                        <p id="res-wrong" class="text-2xl font-black text-red-600"></p>
+                    </div>
+                </div>
 
-                div class=border-t pt-6
-                    h3 class=text-lg font-bold mb-4 flex items-center
-                        span class=bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2!span
+                <div class="border-t pt-6">
+                    <h3 class="text-lg font-bold mb-4 flex items-center">
+                        <span class="bg-red-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-2">!</span>
                         오답 노트
-                    h3
-                    div id=wrong-answers-list class=space-y-4
-                        !-- 오답 리스트가 여기에 생성됨 --
-                    div
-                div
+                    </h3>
+                    <div id="wrong-answers-list" class="space-y-4">
+                        <!-- 오답 리스트가 여기에 생성됨 -->
+                    </div>
+                </div>
 
-                div class=mt-10 text-center
-                    button onclick=location.reload() class=bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow-md hoverbg-indigo-700다시 도전하기button
-                div
-            div
-        main
+                <div class="mt-10 text-center">
+                    <button onclick="location.reload()" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-bold shadow-md hover:bg-indigo-700">다시 도전하기</button>
+                </div>
+            </div>
+        </main>
 
-        !-- 시험 페이지 전용 하단 버튼 바 --
-        footer id=quiz-footer class=hidden border-t p-4 bg-gray-50
-            div class=grid grid-cols-3 gap-3
-                button id=btn-prev onclick=prevQuestion() class=bg-lime-500 hoverbg-lime-600 text-white font-bold py-3 rounded-lg shadow transition-colors이전문제button
-                button id=btn-finish onclick=finishQuiz() class=bg-red-500 hoverbg-red-600 text-white font-bold py-3 rounded-lg shadow transition-colors시험종료button
-                button id=btn-next onclick=nextQuestion() class=bg-blue-500 hoverbg-blue-600 text-white font-bold py-3 rounded-lg shadow transition-colors다음문제button
-            div
-        footer
-    div
+        <!-- 시험 페이지 전용 하단 버튼 바 -->
+        <footer id="quiz-footer" class="hidden border-t p-4 bg-gray-50">
+            <div class="grid grid-cols-3 gap-3">
+                <button id="btn-prev" onclick="prevQuestion()" class="bg-lime-500 hover:bg-lime-600 text-white font-bold py-3 rounded-lg shadow transition-colors">이전문제</button>
+                <button id="btn-finish" onclick="finishQuiz()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded-lg shadow transition-colors">시험종료</button>
+                <button id="btn-next" onclick="nextQuestion()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-lg shadow transition-colors">다음문제</button>
+            </div>
+        </footer>
+    </div>
 
-    script
-         데이터셋
+    <script>
+        // 데이터셋
         const allQuizData = {
-            평면기준점측량 [
-                { unit 1. 다각측량(트래버스), question 다각측량에서 개방 트래버스(Open Traverse)가 주로 사용되는 공사 현장은, options [단지 조성 공사, 노선 측량(도로, 하천), 소규모 필지 측량, 정밀 기준점 매설], answer 1, hint 시점과 종점이 연결되지 않는 형태로 긴 노선 공사에 쓰입니다. },
-                { unit 1. 다각측량(트래버스), question 다각측량의 순서로 옳은 것은, options [선점-조표-관측-답사-계산, 답사-선점-조표-관측-계산, 관측-답사-선점-조표-계산, 계산-답사-선점-조표-관측], answer 1, hint 현장을 먼저 보고(답사), 위치를 정하고(선점), 표지를 세우는(조표) 순입니다. },
-                { unit 1. 다각측량(트래버스), question 트래버스 측량의 폐합오차 조정 시, 각 관측의 정밀도가 같을 때 오차 배분 방법은, options [거리에 비례하여 배분, 각 측점에 균등하게 배분, 가장 긴 변에 몰아줌, 조정하지 않음], answer 1, hint 각오차의 경우 특별한 조건이 없으면 모든 각에 똑같이 나눠줍니다. },
-                { unit 2. 삼각측량, question 삼각측량에서 기선(Base Line) 측량이 필요한 이유는, options [각을 측정할 수 없어서, 삼각형의 크기를 결정하기 위해, 기계고를 높이기 위해, 방위각을 구하기 위해], answer 1, hint 삼각측량은 각만 재기 때문에 최소 하나의 변 길이는 알아야 합니다. },
-                { unit 2. 삼각측량, question 삼각형의 내각 중 가장 이상적인 각도의 크기는, options [15도, 30도, 60도, 120도], answer 2, hint 정삼각형에 가까울수록 측량의 정밀도가 유리합니다. },
-                { unit 3. 거리 및 각 관측, question 광파거리측정기(EDM)로 거리를 잴 때 프리즘 상수를 확인해야 하는 이유는, options [배터리를 아끼기 위해, 기계와 프리즘의 광학적 중심차를 보정하기 위해, 프리즘의 무게를 맞추기 위해, 색수차를 줄이기 위해], answer 1, hint 장비마다 빛이 반사되는 지점의 오차가 존재합니다. },
-                { unit 3. 거리 및 각 관측, question 토탈스테이션(Total Station)으로 측정할 수 없는 것은, options [수평각, 연직각, 경사거리, 현장 대기압], answer 3, hint 토탈스테이션은 각과 거리를 동시에 재는 장비입니다. },
-                { unit 4. 좌표 및 성과 계산, question 위거(Latitude)와 경거(Departure)를 계산할 때 필요한 요소는, options [지방고와 수평거리, 수평거리와 방위각, 기계고와 연직각, 후시와 전시], answer 1, hint 위거 = 거리 × cos(방위각), 경거 = 거리 × sin(방위각)입니다. },
-                { unit 4. 좌표 및 성과 계산, question 폐합 트래버스에서 위거의 합과 경거의 합이 0이 되지 않는 경우 발생하는 오차는, options [각오차, 폐합오차, 기계오차, 굴절오차], answer 1, hint 출발점으로 돌아왔을 때 좌표 차이가 생기는 것을 의미합니다. },
-                { unit 5. 오차와 보정, question 컴퍼스 법칙(Compass Rule)에 의한 오차 배분 조건은, options [각 관측 정밀도가 거리보다 높을 때, 거리와 각의 관측 정밀도가 같을 때, 거리 관측만 정밀할 때, 오차가 없을 때], answer 1, hint 거리에 비례하여 오차를 배분하는 가장 일반적인 방법입니다. },
-                { unit 1. 다각측량(트래버스), question 방위각(Azimuth)의 측정 기준 방향은, options [진남 방향, 진북 방향, 동쪽 방향, 임의 방향], answer 1, hint 북쪽을 0도로 하여 시계방향으로 잽니다. },
-                { unit 2. 삼각측량, question 삼각망 중 가장 신뢰도가 높고 조건식이 많은 형태는, options [단각쇄망, 사각쇄망, 유심다각망, 개방쇄망], answer 1, hint 사각형 안에 대각선이 교차하는 형태로 검토 조건이 가장 많습니다. },
-                { unit 3. 거리 및 각 관측, question 연직각 관측 시 기계의 수평을 맞추는 가장 기초적인 장치는, options [정준나사 및 기포관, 망원경, 삼각대 발, 데이터 기록기], answer 0, hint 정준 과정을 통해 기계를 수평으로 세웁니다. },
-                { unit 4. 좌표 및 성과 계산, question 방위각이 120도인 측선의 방위(Bearing)는, options [N 60 E, S 60 E, S 30 W, N 30 W], answer 1, hint 120도는 남동(SE) 방향이며 남쪽에서 동쪽으로 60도만큼 기울어 있습니다. },
-                { unit 1. 다각측량(트래버스), question 결합 트래버스(Junction Traverse)의 특징은, options [시점만 알고 종점은 모른다., 시점과 종점이 모두 기지점이다., 시점과 종점이 같다., 중간에 기지점이 없다.], answer 1, hint 알고 있는 두 점 사이를 연결하여 오차를 확인합니다. },
-                { unit 5. 오차와 보정, question 측량 결과 얻어진 폐합오차를 측선 총 길이로 나눈 값은, options [상대오차(정밀도), 표준편차, 최확값, 우연오차], answer 0, hint 12000 처럼 분수 형태로 정밀도를 나타냅니다. },
-                { unit 3. 거리 및 각 관측, question 측량 전 토탈스테이션의 '구심' 작업이란, options [기계를 수평으로 맞추는 것, 기계의 중심을 지상 측점 바로 위에 일치시키는 것, 망원경의 초점을 맞추는 것, 프리즘을 정면으로 보는 것], answer 1, hint 측점 바로 위에 기계가 수직으로 놓이게 하는 과정입니다. },
-                { unit 2. 삼각측량, question 삼각측량에서 계산 순서로 옳은 것은, options [좌표계산-변길이계산-각조정, 각조정-변길이계산-좌표계산, 변길이계산-각조정-좌표계산, 좌표계산-각조정-변길이계산], answer 1, hint 각을 먼저 맞추고 정현법칙으로 변을 구한 뒤 좌표를 냅니다. },
-                { unit 1. 다각측량(트래버스), question 측선 5개인 폐합 트래버스 내각의 총합은, options [360도, 540도, 720도, 900도], answer 1, hint 식 180도 × (n - 2)입니다. },
-                { unit 4. 좌표 및 성과 계산, question 컴퓨터를 이용한 성과 정리 시 가장 큰 장점은, options [현장에 갈 필요가 없다., 복잡한 좌표 계산 오차를 줄이고 도면화가 빠르다., 기계가 스스로 측량한다., 비용이 전혀 들지 않는다.], answer 1, hint CAD 연동 및 수치 데이터 처리의 효율성이 핵심입니다. }
+            "평면기준점측량": [
+                { unit: "1. 다각측량(트래버스)", question: "다각측량에서 개방 트래버스(Open Traverse)가 주로 사용되는 공사 현장은?", options: ["단지 조성 공사", "노선 측량(도로, 하천)", "소규모 필지 측량", "정밀 기준점 매설"], answer: 1, hint: "시점과 종점이 연결되지 않는 형태로 긴 노선 공사에 쓰입니다." },
+                { unit: "1. 다각측량(트래버스)", question: "다각측량의 순서로 옳은 것은?", options: ["선점-조표-관측-답사-계산", "답사-선점-조표-관측-계산", "관측-답사-선점-조표-계산", "계산-답사-선점-조표-관측"], answer: 1, hint: "현장을 먼저 보고(답사), 위치를 정하고(선점), 표지를 세우는(조표) 순입니다." },
+                { unit: "1. 다각측량(트래버스)", question: "트래버스 측량의 폐합오차 조정 시, 각 관측의 정밀도가 같을 때 오차 배분 방법은?", options: ["거리에 비례하여 배분", "각 측점에 균등하게 배분", "가장 긴 변에 몰아줌", "조정하지 않음"], answer: 1, hint: "각오차의 경우 특별한 조건이 없으면 모든 각에 똑같이 나눠줍니다." },
+                { unit: "2. 삼각측량", question: "삼각측량에서 기선(Base Line) 측량이 필요한 이유는?", options: ["각을 측정할 수 없어서", "삼각형의 크기를 결정하기 위해", "기계고를 높이기 위해", "방위각을 구하기 위해"], answer: 1, hint: "삼각측량은 각만 재기 때문에 최소 하나의 변 길이는 알아야 합니다." },
+                { unit: "2. 삼각측량", question: "삼각형의 내각 중 가장 이상적인 각도의 크기는?", options: ["15도", "30도", "60도", "120도"], answer: 2, hint: "정삼각형에 가까울수록 측량의 정밀도가 유리합니다." },
+                { unit: "3. 거리 및 각 관측", question: "광파거리측정기(EDM)로 거리를 잴 때 프리즘 상수를 확인해야 하는 이유는?", options: ["배터리를 아끼기 위해", "기계와 프리즘의 광학적 중심차를 보정하기 위해", "프리즘의 무게를 맞추기 위해", "색수차를 줄이기 위해"], answer: 1, hint: "장비마다 빛이 반사되는 지점의 오차가 존재합니다." },
+                { unit: "3. 거리 및 각 관측", question: "토탈스테이션(Total Station)으로 측정할 수 없는 것은?", options: ["수평각", "연직각", "경사거리", "현장 대기압"], answer: 3, hint: "토탈스테이션은 각과 거리를 동시에 재는 장비입니다." },
+                { unit: "4. 좌표 및 성과 계산", question: "위거(Latitude)와 경거(Departure)를 계산할 때 필요한 요소는?", options: ["지방고와 수평거리", "수평거리와 방위각", "기계고와 연직각", "후시와 전시"], answer: 1, hint: "위거 = 거리 × cos(방위각), 경거 = 거리 × sin(방위각)입니다." },
+                { unit: "4. 좌표 및 성과 계산", question: "폐합 트래버스에서 위거의 합과 경거의 합이 0이 되지 않는 경우 발생하는 오차는?", options: ["각오차", "폐합오차", "기계오차", "굴절오차"], answer: 1, hint: "출발점으로 돌아왔을 때 좌표 차이가 생기는 것을 의미합니다." },
+                { unit: "5. 오차와 보정", question: "컴퍼스 법칙(Compass Rule)에 의한 오차 배분 조건은?", options: ["각 관측 정밀도가 거리보다 높을 때", "거리와 각의 관측 정밀도가 같을 때", "거리 관측만 정밀할 때", "오차가 없을 때"], answer: 1, hint: "거리에 비례하여 오차를 배분하는 가장 일반적인 방법입니다." },
+                { unit: "1. 다각측량(트래버스)", question: "방위각(Azimuth)의 측정 기준 방향은?", options: ["진남 방향", "진북 방향", "동쪽 방향", "임의 방향"], answer: 1, hint: "북쪽을 0도로 하여 시계방향으로 잽니다." },
+                { unit: "2. 삼각측량", question: "삼각망 중 가장 신뢰도가 높고 조건식이 많은 형태는?", options: ["단각쇄망", "사각쇄망", "유심다각망", "개방쇄망"], answer: 1, hint: "사각형 안에 대각선이 교차하는 형태로 검토 조건이 가장 많습니다." },
+                { unit: "3. 거리 및 각 관측", question: "연직각 관측 시 기계의 수평을 맞추는 가장 기초적인 장치는?", options: ["정준나사 및 기포관", "망원경", "삼각대 발", "데이터 기록기"], answer: 0, hint: "정준 과정을 통해 기계를 수평으로 세웁니다." },
+                { unit: "4. 좌표 및 성과 계산", question: "방위각이 120도인 측선의 방위(Bearing)는?", options: ["N 60 E", "S 60 E", "S 30 W", "N 30 W"], answer: 1, hint: "120도는 남동(SE) 방향이며 남쪽에서 동쪽으로 60도만큼 기울어 있습니다." },
+                { unit: "1. 다각측량(트래버스)", question: "결합 트래버스(Junction Traverse)의 특징은?", options: ["시점만 알고 종점은 모른다.", "시점과 종점이 모두 기지점이다.", "시점과 종점이 같다.", "중간에 기지점이 없다."], answer: 1, hint: "알고 있는 두 점 사이를 연결하여 오차를 확인합니다." },
+                { unit: "5. 오차와 보정", question: "측량 결과 얻어진 폐합오차를 측선 총 길이로 나눈 값은?", options: ["상대오차(정밀도)", "표준편차", "최확값", "우연오차"], answer: 0, hint: "1/2000 처럼 분수 형태로 정밀도를 나타냅니다." },
+                { unit: "3. 거리 및 각 관측", question: "측량 전 토탈스테이션의 '구심' 작업이란?", options: ["기계를 수평으로 맞추는 것", "기계의 중심을 지상 측점 바로 위에 일치시키는 것", "망원경의 초점을 맞추는 것", "프리즘을 정면으로 보는 것"], answer: 1, hint: "측점 바로 위에 기계가 수직으로 놓이게 하는 과정입니다." },
+                { unit: "2. 삼각측량", question: "삼각측량에서 계산 순서로 옳은 것은?", options: ["좌표계산-변길이계산-각조정", "각조정-변길이계산-좌표계산", "변길이계산-각조정-좌표계산", "좌표계산-각조정-변길이계산"], answer: 1, hint: "각을 먼저 맞추고 정현법칙으로 변을 구한 뒤 좌표를 냅니다." },
+                { unit: "1. 다각측량(트래버스)", question: "측선 5개인 폐합 트래버스 내각의 총합은?", options: ["360도", "540도", "720도", "900도"], answer: 1, hint: "식: 180도 × (n - 2)입니다." },
+                { unit: "4. 좌표 및 성과 계산", question: "컴퓨터를 이용한 성과 정리 시 가장 큰 장점은?", options: ["현장에 갈 필요가 없다.", "복잡한 좌표 계산 오차를 줄이고 도면화가 빠르다.", "기계가 스스로 측량한다.", "비용이 전혀 들지 않는다."], answer: 1, hint: "CAD 연동 및 수치 데이터 처리의 효율성이 핵심입니다." }
             ],
-            수준점측량 [
-                { unit 1. 수준점측량 계획 수립, question 수준측량의 등급별 노선 선정 시 1등 수준노선이 통과해야 할 주요 지점은, options [주요 산 정상, 국가수준점 및 주요 항만, 사유지 중심부, 지방 소하천], answer 1, hint 1등 수준점은 국가의 가장 기본적인 높이 기준을 형성합니다. },
-                { unit 1. 수준점측량 계획 수립, question 수준측량 작업계획서 작성 시 노선도(수준망도)에 표기해야 할 사항이 아닌 것은, options [기지 수준점의 위치, 신설 예정점의 위치, 관측 장비의 시리얼 번호, 노선의 연결 형태], answer 2, hint 노선도는 측량의 기하학적 구조를 보여주는 도면입니다. },
-                { unit 1. 수준점측량 계획 수립, question 수준측량의 정확도를 결정하는 가장 중요한 요소 중 하나인 '관측 거리' 제한은 주로 무엇에 의해 결정되는가, options [관측자의 시력, 수준기의 감도 및 기상 조건, 배터리 용량, 표척의 색상], answer 1, hint 대기 굴절과 장비 특성을 고려하여 거리를 제한합니다. },
-                { unit 1. 수준점측량 계획 수립, question 작업 계획 수립 단계에서 선점(Selection) 시 피해야 할 장소는, options [지반이 견고한 곳, 차후 이용이 편리한 곳, 지반 침하가 예상되는 매립지, 공공용지], answer 2, hint 높이 기준점은 고정되어 있어야 하므로 변동이 심한 곳은 피합니다. },
-                { unit 1. 수준점측량 계획 수립, question 공공측량 작업규정에서 정하는 수준점 매설 시 표지의 재질로 적합하지 않은 것은, options [화강암, 콘크리트, 목재(임시표지 제외), 금속제], answer 2, hint 반구구적인 보존을 위해 내구성이 강한 재질을 써야 합니다. },
-                { unit 2. 수준점측량 외업 준비, question 수준의(Level) 점검 항목 중 시준축이 기포관축과 평행한지 확인하는 점검은, options [원형기포관 점검, 십자선 점검, 교호 수준측량 점검, 컴펜세이터 점검], answer 2, hint 시준축 오차를 확인하기 위해 두 점 사이에서 확인하는 방법입니다. },
-                { unit 2. 수준점측량 외업 준비, question 디지털 수준의를 사용할 때 바코드 표척(Staff)을 사용하는 주된 이유는, options [무게를 가볍게 하기 위해, 자동으로 눈금을 읽고 기록하기 위해, 색상이 예뻐서, 밤에도 잘 보이기 위해], answer 1, hint 디지털 레벨은 바코드 패턴을 영상 처리하여 값을 읽습니다. },
-                { unit 2. 수준점측량 외업 준비, question 표척의 하단부가 마모되었을 때 발생하는 오차를 무엇이라 하는가, options [시준축 오차, 표척 정수 오차(영점 오차), 기상 오차, 정준 오차], answer 1, hint 표척의 0점 위치가 달라져서 발생하는 오차입니다. },
-                { unit 2. 수준점측량 외업 준비, question 수준측량 전 수행하는 '기기 검점' 결과는 어디에 기록해야 하는가, options [개인 수첩, 관측부의 전면 또는 별도 양식, 인터넷 블로그, 영수증 뒷면], answer 1, hint 공식적인 측량 성과물로서 관측부에 남겨야 합니다. },
-                { unit 2. 수준점측량 외업 준비, question 수준의 설치 시 '삼각대'의 올바른 설치 방법은, options [다리를 최대한 모아서 세운다., 지면에 살짝 올려둔다., 다리를 견고하게 밟아 고정한다., 경사면에 비스듬히 세운다.], answer 2, hint 진동과 침하를 방지하기 위해 단단히 고정해야 합니다. },
-                { unit 3. 직접 수준측량, question 수준측량에서 전시(F.S)와 후시(B.S)의 거리를 같게 하는 가장 큰 이유는, options [작업 속도를 높이기 위해, 시준축 오차와 지구곡률 오차를 상쇄하기 위해, 관측자의 피로를 줄이기 위해, 표척의 무게 중심을 맞추기 위해], answer 1, hint 기계를 중심으로 양쪽 거리가 같으면 광학적지구적 오차가 상쇄됩니다. },
-                { unit 3. 직접 수준측량, question 기고식(Instrumental Height) 야장 기입법에서 기계고(I.H)를 구하는 식은, options [I.H = 지방고 + 후시(B.S), I.H = 지방고 - 전시(F.S), I.H = 후시 + 전시, I.H = 후시 - 전시], answer 0, hint 지방고에 기준점에서 읽은 후시값을 더하면 기계의 높이가 됩니다. },
-                { unit 3. 직접 수준측량, question 수준점(B.M) 사이에서 기계를 세우는 점을 무엇이라 하는가, options [측점(Station), 이기점(T.P), 중간점(I.P), 기점], answer 1, hint Turning Point의 약자로, 후시와 전시를 모두 읽는 점입니다. },
-                { unit 3. 직접 수준측량, question 관측 도중 중간점(I.P)을 읽을 때 주의사항으로 옳은 것은, options [이기점보다 정밀하게 읽어야 한다., 후시를 읽은 후 즉시 읽는다., 전시(F.S) 칸이 아닌 별도 칸에 기록한다., 거리를 반드시 재야 한다.], answer 2, hint 중간점은 계산 경로에 영향을 주지 않으므로 별도 관리합니다. },
-                { unit 3. 직접 수준측량, question 왕복 수준측량을 실시하는 목적은, options [시간을 때우기 위해, 오차를 확인하고 정확도를 높이기 위해, 표척을 옮기기 싫어서, 장비의 성능을 테스트하기 위해], answer 1, hint 갈 때와 올 때의 높이차를 비교하여 측량의 폐합 여부를 확인합니다. },
-                { unit 4. 간접 수준측량, question 두 점 사이의 거리가 멀어 직접 수준측량이 어려울 때, 연직각과 거리를 이용해 높이차를 구하는 방법은, options [기압 수준측량, 삼각 수준측량, 수준의 측량, GPS 측량], answer 1, hint 직각삼각형의 탄젠트($tan$) 원리를 이용합니다. },
-                { unit 4. 간접 수준측량, question 삼각 수준측량 시 지구 곡률과 대기 굴절에 의한 오차를 보정하는 계수는, options [온도 계수, 양차(C&R) 보정, PDOP 보정, 프리즘 상수], answer 1, hint 곡률(Curvature)과 굴절(Refraction)의 합성 오차입니다. },
-                { unit 4. 간접 수준측량, question GNSS 측량을 통해 얻은 타원체고를 표고(H)로 변환하기 위해 필요한 값은, options [수평각, 지오이드고(N), 표준 대기압, 위성 번호], answer 1, hint 표고 = 타원체고 - 지오이드고 ($H = h - N$) },
-                { unit 4. 간접 수준측량, question 강 건너편의 높이를 측정하기 위해 양쪽 기슭에서 동시에 관측하는 수준측량법은, options [교호 수준측량, 방사 수준측량, 폐합 수준측량, 연속 수준측량], answer 0, hint 기기를 서로 마주 보게 설치하여 오차를 상쇄하는 방식입니다. },
-                { unit 4. 간접 수준측량, question 기압 수준측량의 주된 특징은, options [정밀도가 매우 높다., 기상 조건에 영향을 받지 않는다., 대략적인 높이 차이를 신속하게 구할 때 쓴다., 주로 실내에서만 한다.], answer 2, hint 기압계의 고도 변화 원리를 이용하므로 정밀도는 낮지만 신속합니다. },
-                { unit 5. 수준측량 오차 보정, question 수준측량에서 발생하는 '우연오차'의 성질로 옳은 것은, options [항상 한쪽 방향으로만 발생한다., 노선 거리에 비례하여 누적된다., 관측 횟수의 제곱근(√n)에 비례한다., 계산기로 완벽히 제거 가능하다.], answer 2, hint 우연오차는 상쇄되기도 하므로 제곱근에 비례하여 커집니다. },
-                { unit 5. 수준측량 오차 보정, question 수준측량의 오차 배분 원칙으로 옳은 것은, options [모든 구간에 똑같이 배분한다., 거리에 비례하여 배분한다., 가장 짧은 구간에 몰아준다., 측량 기사가 임의로 정한다.], answer 1, hint 거리가 길수록 오차 발생 가능성이 높으므로 거리에 비례 배분합니다. },
-                { unit 5. 수준측량 오차 보정, question 햇빛이 강할 때 수준의 렌즈가 가열되어 기포가 변동하는 것을 막기 위해 사용하는 도구는, options [우산(측량용 산), 선글라스, 선풍기, 손난로], answer 0, hint 직사광선을 차단하여 기계의 열 변형을 방지해야 합니다. },
-                { unit 5. 수준측량 오차 보정, question 표척을 세울 때 앞뒤로 흔들어 가장 작은 값을 읽는 이유는, options [표척이 무거워서, 연직으로 세워졌을 때의 값을 읽기 위해, 관측자와 신호를 주고받기 위해, 먼지를 털기 위해], answer 1, hint 기울어지면 눈금값이 실제보다 크게 읽히기 때문입니다. },
-                { unit 5. 수준측량 오차 보정, question 1등 수준측량의 왕복 폐합오차 허용범위(mm)는 (단, S는 편도 거리 km), options [2.5√S, 4√S, 10√S, 20√S], answer 0, hint 국가 1등 수준점의 기준은 매우 엄격합니다 (2.5√S). },
-                { unit 6. 수준측량 성과 정리, question 수준점 성과표에 기재되는 '표고'의 기준면은, options [독도 근해 평균해수면, 인천만 평균해수면, 제주도 평균해수면, 부산항 평균해수면], answer 1, hint 우리나라 고도 기준(Incheon Mean Sea Level)입니다. },
-                { unit 6. 수준측량 성과 정리, question 측량 성과 심사 시 제출해야 하는 서류가 아닌 것은, options [관측부, 계산부, 점의 조서, 현장 식대 영수증], answer 3, hint 기술적 근거가 되는 관측 데이터와 결과물이 중요합니다. },
-                { unit 6. 수준측량 성과 정리, question '점의 조서'를 작성하는 주된 목적은, options [성과를 자랑하기 위해, 차후에 누구나 점을 쉽게 찾을 수 있도록 하기 위해, 법적 책임을 피하기 위해, 종이 사용량을 늘리기 위해], answer 1, hint 위치 약도와 사진을 남겨 후속 작업자가 찾기 편하게 합니다. },
-                { unit 6. 수준측량 성과 정리, question 관측값의 재측 여부를 결정하는 기준은, options [관측자의 기분, 허용 오차 범위 초과 여부, 남은 점심 시간, 장비의 가격], answer 1, hint 규정된 폐합오차 범위를 넘어서면 반드시 재측해야 합니다. },
-                { unit 6. 수준측량 성과 정리, question 디지털 수준의 성과를 정리할 때 가장 큰 장점은, options [종이가 전혀 필요 없다., 데이터 기록 및 계산 오차(착오)를 방지할 수 있다., 사람이 현장에 갈 필요가 없다., 전기가 없어도 작동한다.], answer 1, hint 수동 기록 시 발생하는 오타나 계산 실수를 원천적으로 막습니다. }
+            "수준점측량": [
+                { unit: "1. 수준점측량 계획 수립", question: "수준측량의 등급별 노선 선정 시 1등 수준노선이 통과해야 할 주요 지점은?", options: ["주요 산 정상", "국가수준점 및 주요 항만", "사유지 중심부", "지방 소하천"], answer: 1, hint: "1등 수준점은 국가의 가장 기본적인 높이 기준을 형성합니다." },
+                { unit: "1. 수준점측량 계획 수립", question: "수준측량 작업계획서 작성 시 노선도(수준망도)에 표기해야 할 사항이 아닌 것은?", options: ["기지 수준점의 위치", "신설 예정점의 위치", "관측 장비의 시리얼 번호", "노선의 연결 형태"], answer: 2, hint: "노선도는 측량의 기하학적 구조를 보여주는 도면입니다." },
+                { unit: "1. 수준점측량 계획 수립", question: "수준측량의 정확도를 결정하는 가장 중요한 요소 중 하나인 '관측 거리' 제한은 주로 무엇에 의해 결정되는가?", options: ["관측자의 시력", "수준기의 감도 및 기상 조건", "배터리 용량", "표척의 색상"], answer: 1, hint: "대기 굴절과 장비 특성을 고려하여 거리를 제한합니다." },
+                { unit: "1. 수준점측량 계획 수립", question: "작업 계획 수립 단계에서 선점(Selection) 시 피해야 할 장소는?", options: ["지반이 견고한 곳", "차후 이용이 편리한 곳", "지반 침하가 예상되는 매립지", "공공용지"], answer: 2, hint: "높이 기준점은 고정되어 있어야 하므로 변동이 심한 곳은 피합니다." },
+                { unit: "1. 수준점측량 계획 수립", question: "공공측량 작업규정에서 정하는 수준점 매설 시 표지의 재질로 적합하지 않은 것은?", options: ["화강암", "콘크리트", "목재(임시표지 제외)", "금속제"], answer: 2, hint: "반구구적인 보존을 위해 내구성이 강한 재질을 써야 합니다." },
+                { unit: "2. 수준점측량 외업 준비", question: "수준의(Level) 점검 항목 중 시준축이 기포관축과 평행한지 확인하는 점검은?", options: ["원형기포관 점검", "십자선 점검", "교호 수준측량 점검", "컴펜세이터 점검"], answer: 2, hint: "시준축 오차를 확인하기 위해 두 점 사이에서 확인하는 방법입니다." },
+                { unit: "2. 수준점측량 외업 준비", question: "디지털 수준의를 사용할 때 바코드 표척(Staff)을 사용하는 주된 이유는?", options: ["무게를 가볍게 하기 위해", "자동으로 눈금을 읽고 기록하기 위해", "색상이 예뻐서", "밤에도 잘 보이기 위해"], answer: 1, hint: "디지털 레벨은 바코드 패턴을 영상 처리하여 값을 읽습니다." },
+                { unit: "2. 수준점측량 외업 준비", question: "표척의 하단부가 마모되었을 때 발생하는 오차를 무엇이라 하는가?", options: ["시준축 오차", "표척 정수 오차(영점 오차)", "기상 오차", "정준 오차"], answer: 1, hint: "표척의 0점 위치가 달라져서 발생하는 오차입니다." },
+                { unit: "2. 수준점측량 외업 준비", question: "수준측량 전 수행하는 '기기 검점' 결과는 어디에 기록해야 하는가?", options: ["개인 수첩", "관측부의 전면 또는 별도 양식", "인터넷 블로그", "영수증 뒷면"], answer: 1, hint: "공식적인 측량 성과물로서 관측부에 남겨야 합니다." },
+                { unit: "2. 수준점측량 외업 준비", question: "수준의 설치 시 '삼각대'의 올바른 설치 방법은?", options: ["다리를 최대한 모아서 세운다.", "지면에 살짝 올려둔다.", "다리를 견고하게 밟아 고정한다.", "경사면에 비스듬히 세운다."], answer: 2, hint: "진동과 침하를 방지하기 위해 단단히 고정해야 합니다." },
+                { unit: "3. 직접 수준측량", question: "수준측량에서 전시(F.S)와 후시(B.S)의 거리를 같게 하는 가장 큰 이유는?", options: ["작업 속도를 높이기 위해", "시준축 오차와 지구곡률 오차를 상쇄하기 위해", "관측자의 피로를 줄이기 위해", "표척의 무게 중심을 맞추기 위해"], answer: 1, hint: "기계를 중심으로 양쪽 거리가 같으면 광학적/지구적 오차가 상쇄됩니다." },
+                { unit: "3. 직접 수준측량", question: "기고식(Instrumental Height) 야장 기입법에서 기계고(I.H)를 구하는 식은?", options: ["I.H = 지방고 + 후시(B.S)", "I.H = 지방고 - 전시(F.S)", "I.H = 후시 + 전시", "I.H = 후시 - 전시"], answer: 0, hint: "지방고에 기준점에서 읽은 후시값을 더하면 기계의 높이가 됩니다." },
+                { unit: "3. 직접 수준측량", question: "수준점(B.M) 사이에서 기계를 세우는 점을 무엇이라 하는가?", options: ["측점(Station)", "이기점(T.P)", "중간점(I.P)", "기점"], answer: 1, hint: "Turning Point의 약자로, 후시와 전시를 모두 읽는 점입니다." },
+                { unit: "3. 직접 수준측량", question: "관측 도중 중간점(I.P)을 읽을 때 주의사항으로 옳은 것은?", options: ["이기점보다 정밀하게 읽어야 한다.", "후시를 읽은 후 즉시 읽는다.", "전시(F.S) 칸이 아닌 별도 칸에 기록한다.", "거리를 반드시 재야 한다."], answer: 2, hint: "중간점은 계산 경로에 영향을 주지 않으므로 별도 관리합니다." },
+                { unit: "3. 직접 수준측량", question: "왕복 수준측량을 실시하는 목적은?", options: ["시간을 때우기 위해", "오차를 확인하고 정확도를 높이기 위해", "표척을 옮기기 싫어서", "장비의 성능을 테스트하기 위해"], answer: 1, hint: "갈 때와 올 때의 높이차를 비교하여 측량의 폐합 여부를 확인합니다." },
+                { unit: "4. 간접 수준측량", question: "두 점 사이의 거리가 멀어 직접 수준측량이 어려울 때, 연직각과 거리를 이용해 높이차를 구하는 방법은?", options: ["기압 수준측량", "삼각 수준측량", "수준의 측량", "GPS 측량"], answer: 1, hint: "직각삼각형의 탄젠트($tan$) 원리를 이용합니다." },
+                { unit: "4. 간접 수준측량", question: "삼각 수준측량 시 지구 곡률과 대기 굴절에 의한 오차를 보정하는 계수는?", options: ["온도 계수", "양차(C&R) 보정", "PDOP 보정", "프리즘 상수"], answer: 1, hint: "곡률(Curvature)과 굴절(Refraction)의 합성 오차입니다." },
+                { unit: "4. 간접 수준측량", question: "GNSS 측량을 통해 얻은 타원체고를 표고(H)로 변환하기 위해 필요한 값은?", options: ["수평각", "지오이드고(N)", "표준 대기압", "위성 번호"], answer: 1, hint: "표고 = 타원체고 - 지오이드고 ($H = h - N$)" },
+                { unit: "4. 간접 수준측량", question: "강 건너편의 높이를 측정하기 위해 양쪽 기슭에서 동시에 관측하는 수준측량법은?", options: ["교호 수준측량", "방사 수준측량", "폐합 수준측량", "연속 수준측량"], answer: 0, hint: "기기를 서로 마주 보게 설치하여 오차를 상쇄하는 방식입니다." },
+                { unit: "4. 간접 수준측량", question: "기압 수준측량의 주된 특징은?", options: ["정밀도가 매우 높다.", "기상 조건에 영향을 받지 않는다.", "대략적인 높이 차이를 신속하게 구할 때 쓴다.", "주로 실내에서만 한다."], answer: 2, hint: "기압계의 고도 변화 원리를 이용하므로 정밀도는 낮지만 신속합니다." },
+                { unit: "5. 수준측량 오차 보정", question: "수준측량에서 발생하는 '우연오차'의 성질로 옳은 것은?", options: ["항상 한쪽 방향으로만 발생한다.", "노선 거리에 비례하여 누적된다.", "관측 횟수의 제곱근(√n)에 비례한다.", "계산기로 완벽히 제거 가능하다."], answer: 2, hint: "우연오차는 상쇄되기도 하므로 제곱근에 비례하여 커집니다." },
+                { unit: "5. 수준측량 오차 보정", question: "수준측량의 오차 배분 원칙으로 옳은 것은?", options: ["모든 구간에 똑같이 배분한다.", "거리에 비례하여 배분한다.", "가장 짧은 구간에 몰아준다.", "측량 기사가 임의로 정한다."], answer: 1, hint: "거리가 길수록 오차 발생 가능성이 높으므로 거리에 비례 배분합니다." },
+                { unit: "5. 수준측량 오차 보정", question: "햇빛이 강할 때 수준의 렌즈가 가열되어 기포가 변동하는 것을 막기 위해 사용하는 도구는?", options: ["우산(측량용 산)", "선글라스", "선풍기", "손난로"], answer: 0, hint: "직사광선을 차단하여 기계의 열 변형을 방지해야 합니다." },
+                { unit: "5. 수준측량 오차 보정", question: "표척을 세울 때 앞뒤로 흔들어 가장 작은 값을 읽는 이유는?", options: ["표척이 무거워서", "연직으로 세워졌을 때의 값을 읽기 위해", "관측자와 신호를 주고받기 위해", "먼지를 털기 위해"], answer: 1, hint: "기울어지면 눈금값이 실제보다 크게 읽히기 때문입니다." },
+                { unit: "5. 수준측량 오차 보정", question: "1등 수준측량의 왕복 폐합오차 허용범위(mm)는? (단, S는 편도 거리 km)", options: ["2.5√S", "4√S", "10√S", "20√S"], answer: 0, hint: "국가 1등 수준점의 기준은 매우 엄격합니다 (2.5√S)." },
+                { unit: "6. 수준측량 성과 정리", question: "수준점 성과표에 기재되는 '표고'의 기준면은?", options: ["독도 근해 평균해수면", "인천만 평균해수면", "제주도 평균해수면", "부산항 평균해수면"], answer: 1, hint: "우리나라 고도 기준(Incheon Mean Sea Level)입니다." },
+                { unit: "6. 수준측량 성과 정리", question: "측량 성과 심사 시 제출해야 하는 서류가 아닌 것은?", options: ["관측부", "계산부", "점의 조서", "현장 식대 영수증"], answer: 3, hint: "기술적 근거가 되는 관측 데이터와 결과물이 중요합니다." },
+                { unit: "6. 수준측량 성과 정리", question: "'점의 조서'를 작성하는 주된 목적은?", options: ["성과를 자랑하기 위해", "차후에 누구나 점을 쉽게 찾을 수 있도록 하기 위해", "법적 책임을 피하기 위해", "종이 사용량을 늘리기 위해"], answer: 1, hint: "위치 약도와 사진을 남겨 후속 작업자가 찾기 편하게 합니다." },
+                { unit: "6. 수준측량 성과 정리", question: "관측값의 재측 여부를 결정하는 기준은?", options: ["관측자의 기분", "허용 오차 범위 초과 여부", "남은 점심 시간", "장비의 가격"], answer: 1, hint: "규정된 폐합오차 범위를 넘어서면 반드시 재측해야 합니다." },
+                { unit: "6. 수준측량 성과 정리", question: "디지털 수준의 성과를 정리할 때 가장 큰 장점은?", options: ["종이가 전혀 필요 없다.", "데이터 기록 및 계산 오차(착오)를 방지할 수 있다.", "사람이 현장에 갈 필요가 없다.", "전기가 없어도 작동한다."], answer: 1, hint: "수동 기록 시 발생하는 오타나 계산 실수를 원천적으로 막습니다." }
             ],
-            지상현황측량 [
-                { unit 1. 현황측량 계획수립, question 지상현황측량을 수행하기 전, 작업의 효율성을 위해 가장 먼저 수행해야 하는 지형 정보 수집 자료는, options [기성 수치지형도 및 항공사진, 장비 검사 성적서, 인부 배치표, 토지 대장], answer 0, hint 기존에 제작된 지도나 사진을 통해 지형의 대략적인 형태를 파악해야 합니다. },
-                { unit 1. 현황측량 계획수립, question 현황측량 작업계획서에 반드시 포함되어야 할 내용이 아닌 것은, options [측량의 목적 및 기간, 동원 인원 및 장비, 인근 지역의 맛집 정보, 측량 구역 및 정확도], answer 2, hint 작업계획서는 기술적이고 행정적인 공정 관리에 집중해야 합니다. },
-                { unit 1. 현황측량 계획수립, question 현황측량의 정밀도를 결정짓는 가장 중요한 요소는, options [장비의 가격, 측량 목적에 맞는 축척 설정, 작업자의 연령, 날씨], answer 1, hint 축척에 따라 관측해야 할 지물의 상세도가 달라집니다. },
-                { unit 1. 현황측량 계획수립, question 현황측량 시 기지점(기준점) 확인을 위해 필요한 문서는, options [토지이용계획확인서, 기준점 성과표, 건축물대장, 견적서], answer 1, hint 좌표와 고도값이 기록된 공식 문서를 확인해야 합니다. },
-                { unit 1. 현황측량 계획수립, question 현황측량 계획 시 현장답사를 통해 확인해야 할 사항은, options [기지점의 망실 유무, 주변 식당 위치, 장비 대여소 위치, 사무실 임대료], answer 0, hint 실제로 사용할 기준점이 현장에 그대로 있는지 확인하는 것이 필수입니다. },
-                { unit 2. 외업준비, question 토탈스테이션(TS)의 정밀도 유지를 위해 작업 전 수행해야 하는 점검은, options [배터리 충전 확인, 기포관 및 구심 장치 점검, 케이스 청소, SD카드 포맷], answer 1, hint 기계의 수평과 수직 중심을 맞추는 장치가 정확한지 봐야 합니다. },
-                { unit 2. 외업준비, question 현황 관측 시 지형물을 분류하기 위해 사용하는 일련의 약속된 기호는, options [바코드, 지물 코드(Code), QR코드, 색상표], answer 1, hint 측량 중 건물, 도로, 전신주 등을 구분하여 입력할 때 사용합니다. },
-                { unit 2. 외업준비, question 외업 수행 시 안전 사고 예방을 위해 착용해야 할 필수 보호구는, options [안전모 및 안전조끼, 선글라스, 등산화, 이어폰], answer 0, hint 도로변이나 공사 현장에서 작업자의 시인성과 안전을 확보해야 합니다. },
-                { unit 2. 외업준비, question 토탈스테이션의 전원을 켜고 가장 먼저 설정해야 하는 측량 환경 요소는, options [사용자 이름, 기압 및 기온(기상 보정), 액정 밝기, 버저 소리 크기], answer 1, hint 대기 상태에 따른 거리 오차를 줄이기 위해 필수적인 입력 사항입니다. },
-                { unit 2. 외업준비, question 지상현황측량에 주로 사용되는 반사 타겟의 종류는, options [종이 타겟, 프리즘(Prism), 손거울, 레이저 포인터], answer 1, hint 빛을 되돌려보내 거리를 측정하는 장치입니다. },
-                { unit 3. 현황 관측, question 토탈스테이션을 이용한 현황 관측 시 가장 먼저 수행하는 측점 설정 단계는, options [전시 관측, 기계점 설치 및 후시 관측, 데이터 삭제, 프리즘 높이 조절], answer 1, hint 기계를 세우고(기계점), 이미 알고 있는 점(후시)을 보아 방향을 결정해야 합니다. },
-                { unit 3. 현황 관측, question 지물의 굴곡이 심하거나 상세한 묘사가 필요한 지점에서 측량해야 할 점은, options [기준점, 변곡점(Change Point), 임의점, 중심점], answer 1, hint 모양이 변하는 지점을 정확히 찍어야 지형이 제대로 그려집니다. },
-                { unit 3. 현황 관측, question 현장에서 측량하면서 동시에 지형의 형태를 스케치하는 문서는, options [야장(Field Note), 공사 일지, 회계 장부, 출근부], answer 0, hint 나중에 실내에서 도면을 그릴 때 참고하는 중요한 그림 기록입니다. },
-                { unit 3. 현황 관측, question 등고선을 그리기 위해 높이값이 필요한 지형 측정 시 주의사항은, options [무조건 많이 찍는다, 지성선(능선, 계곡선)을 따라 측정한다, 낮은 곳만 찍는다, 큰 나무 밑만 찍는다], answer 1, hint 지형의 뼈대가 되는 선을 따라 높이를 재야 정확한 기복이 표현됩니다. },
-                { unit 3. 현황 관측, question 수치현황측량 시 데이터 기록 방식 중 '자동 기록'의 장점은, options [글씨를 잘 쓸 필요가 없다, 사람이 없어도 된다, 입력 오차를 줄이고 작업 속도가 빠르다, 기계가 스스로 이동한다], answer 2, hint 버튼 하나로 좌표가 저장되어 오타를 방지할 수 있습니다. },
-                { unit 4. 성과 정리, question 관측된 데이터를 PC로 옮겨 도면화하는 소프트웨어의 대명사는, options [Photoshop, CAD(Computer Aided Design), Excel, PowerPoint], answer 1, hint 설계 및 도면 작성을 위한 전문 프로그램입니다. },
-                { unit 4. 성과 정리, question 수치지형도 작성 시 지물의 속성을 구분하기 위해 사용하는 레이어(Layer)의 역할은, options [도면의 무게 조절, 지물별(도로, 건물 등) 분리 및 관리, 파일 용량 축소, 화면 보호], answer 1, hint 투명한 종이를 겹치듯 정보를 분류하여 켜고 끌 수 있게 합니다. },
-                { unit 4. 성과 정리, question 성과 정리 단계에서 수행하는 '편집' 작업의 주된 목적은, options [현장 데이터 삭제, 측량된 점들을 연결하여 지형 지물 묘사, 사진 보정, 보고서 출력], answer 1, hint 편지 작업은 점 데이터들을 선과 면으로 만들어 지도를 완성하는 과정입니다. },
-                { unit 4. 성과 정리, question 제작된 지도의 정확도를 확인하기 위해 수행하는 최종 점검은, options [현장 검사 측량, 인터넷 검색, 장비 닦기, 작업자 회식], answer 0, hint 도면이 실제 현장과 맞는지 다시 확인하는 과정입니다. },
-                { unit 4. 성과 정리, question 지상현황측량의 최종 성과물에 포함되지 않는 것은, options [수치지형도 파일, 측량 야장, 현장 인부들의 이력서, 기준점 성과표], answer 2, hint 성과물은 기술적인 결과 데이터와 증빙 자료 위주로 구성됩니다. }
+            "지상현황측량": [
+                { unit: "1. 현황측량 계획수립", question: "지상현황측량을 수행하기 전, 작업의 효율성을 위해 가장 먼저 수행해야 하는 지형 정보 수집 자료는?", options: ["기성 수치지형도 및 항공사진", "장비 검사 성적서", "인부 배치표", "토지 대장"], answer: 0, hint: "기존에 제작된 지도나 사진을 통해 지형의 대략적인 형태를 파악해야 합니다." },
+                { unit: "1. 현황측량 계획수립", question: "현황측량 작업계획서에 반드시 포함되어야 할 내용이 아닌 것은?", options: ["측량의 목적 및 기간", "동원 인원 및 장비", "인근 지역의 맛집 정보", "측량 구역 및 정확도"], answer: 2, hint: "작업계획서는 기술적이고 행정적인 공정 관리에 집중해야 합니다." },
+                { unit: "1. 현황측량 계획수립", question: "현황측량의 정밀도를 결정짓는 가장 중요한 요소는?", options: ["장비의 가격", "측량 목적에 맞는 축척 설정", "작업자의 연령", "날씨"], answer: 1, hint: "축척에 따라 관측해야 할 지물의 상세도가 달라집니다." },
+                { unit: "1. 현황측량 계획수립", question: "현황측량 시 기지점(기준점) 확인을 위해 필요한 문서는?", options: ["토지이용계획확인서", "기준점 성과표", "건축물대장", "견적서"], answer: 1, hint: "좌표와 고도값이 기록된 공식 문서를 확인해야 합니다." },
+                { unit: "1. 현황측량 계획수립", question: "현황측량 계획 시 현장답사를 통해 확인해야 할 사항은?", options: ["기지점의 망실 유무", "주변 식당 위치", "장비 대여소 위치", "사무실 임대료"], answer: 0, hint: "실제로 사용할 기준점이 현장에 그대로 있는지 확인하는 것이 필수입니다." },
+                { unit: "2. 외업준비", question: "토탈스테이션(TS)의 정밀도 유지를 위해 작업 전 수행해야 하는 점검은?", options: ["배터리 충전 확인", "기포관 및 구심 장치 점검", "케이스 청소", "SD카드 포맷"], answer: 1, hint: "기계의 수평과 수직 중심을 맞추는 장치가 정확한지 봐야 합니다." },
+                { unit: "2. 외업준비", question: "현황 관측 시 지형물을 분류하기 위해 사용하는 일련의 약속된 기호는?", options: ["바코드", "지물 코드(Code)", "QR코드", "색상표"], answer: 1, hint: "측량 중 건물, 도로, 전신주 등을 구분하여 입력할 때 사용합니다." },
+                { unit: "2. 외업준비", question: "외업 수행 시 안전 사고 예방을 위해 착용해야 할 필수 보호구는?", options: ["안전모 및 안전조끼", "선글라스", "등산화", "이어폰"], answer: 0, hint: "도로변이나 공사 현장에서 작업자의 시인성과 안전을 확보해야 합니다." },
+                { unit: "2. 외업준비", question: "토탈스테이션의 전원을 켜고 가장 먼저 설정해야 하는 측량 환경 요소는?", options: ["사용자 이름", "기압 및 기온(기상 보정)", "액정 밝기", "버저 소리 크기"], answer: 1, hint: "대기 상태에 따른 거리 오차를 줄이기 위해 필수적인 입력 사항입니다." },
+                { unit: "2. 외업준비", question: "지상현황측량에 주로 사용되는 반사 타겟의 종류는?", options: ["종이 타겟", "프리즘(Prism)", "손거울", "레이저 포인터"], answer: 1, hint: "빛을 되돌려보내 거리를 측정하는 장치입니다." },
+                { unit: "3. 현황 관측", question: "토탈스테이션을 이용한 현황 관측 시 가장 먼저 수행하는 측점 설정 단계는?", options: ["전시 관측", "기계점 설치 및 후시 관측", "데이터 삭제", "프리즘 높이 조절"], answer: 1, hint: "기계를 세우고(기계점), 이미 알고 있는 점(후시)을 보아 방향을 결정해야 합니다." },
+                { unit: "3. 현황 관측", question: "지물의 굴곡이 심하거나 상세한 묘사가 필요한 지점에서 측량해야 할 점은?", options: ["기준점", "변곡점(Change Point)", "임의점", "중심점"], answer: 1, hint: "모양이 변하는 지점을 정확히 찍어야 지형이 제대로 그려집니다." },
+                { unit: "3. 현황 관측", question: "현장에서 측량하면서 동시에 지형의 형태를 스케치하는 문서는?", options: ["야장(Field Note)", "공사 일지", "회계 장부", "출근부"], answer: 0, hint: "나중에 실내에서 도면을 그릴 때 참고하는 중요한 그림 기록입니다." },
+                { unit: "3. 현황 관측", question: "등고선을 그리기 위해 높이값이 필요한 지형 측정 시 주의사항은?", options: ["무조건 많이 찍는다", "지성선(능선, 계곡선)을 따라 측정한다", "낮은 곳만 찍는다", "큰 나무 밑만 찍는다"], answer: 1, hint: "지형의 뼈대가 되는 선을 따라 높이를 재야 정확한 기복이 표현됩니다." },
+                { unit: "3. 현황 관측", question: "수치현황측량 시 데이터 기록 방식 중 '자동 기록'의 장점은?", options: ["글씨를 잘 쓸 필요가 없다", "사람이 없어도 된다", "입력 오차를 줄이고 작업 속도가 빠르다", "기계가 스스로 이동한다"], answer: 2, hint: "버튼 하나로 좌표가 저장되어 오타를 방지할 수 있습니다." },
+                { unit: "4. 성과 정리", question: "관측된 데이터를 PC로 옮겨 도면화하는 소프트웨어의 대명사는?", options: ["Photoshop", "CAD(Computer Aided Design)", "Excel", "PowerPoint"], answer: 1, hint: "설계 및 도면 작성을 위한 전문 프로그램입니다." },
+                { unit: "4. 성과 정리", question: "수치지형도 작성 시 지물의 속성을 구분하기 위해 사용하는 레이어(Layer)의 역할은?", options: ["도면의 무게 조절", "지물별(도로, 건물 등) 분리 및 관리", "파일 용량 축소", "화면 보호"], answer: 1, hint: "투명한 종이를 겹치듯 정보를 분류하여 켜고 끌 수 있게 합니다." },
+                { unit: "4. 성과 정리", question: "성과 정리 단계에서 수행하는 '편집' 작업의 주된 목적은?", options: ["현장 데이터 삭제", "측량된 점들을 연결하여 지형 지물 묘사", "사진 보정", "보고서 출력"], answer: 1, hint: "편지 작업은 점 데이터들을 선과 면으로 만들어 지도를 완성하는 과정입니다." },
+                { unit: "4. 성과 정리", question: "제작된 지도의 정확도를 확인하기 위해 수행하는 최종 점검은?", options: ["현장 검사 측량", "인터넷 검색", "장비 닦기", "작업자 회식"], answer: 0, hint: "도면이 실제 현장과 맞는지 다시 확인하는 과정입니다." },
+                { unit: "4. 성과 정리", question: "지상현황측량의 최종 성과물에 포함되지 않는 것은?", options: ["수치지형도 파일", "측량 야장", "현장 인부들의 이력서", "기준점 성과표"], answer: 2, hint: "성과물은 기술적인 결과 데이터와 증빙 자료 위주로 구성됩니다." }
             ],
-            노선측량 [
-                { unit 1. 노선측량 계획수립, question 노선측량의 단계별 순서 중 가장 먼저 이루어져야 하는 것은, options [답사(Reconnaissance), 예측(Preliminary Survey), 실측(Location Survey), 선정(Selection)], answer 0, hint 현장을 직접 눈으로 확인하여 노선의 개략적인 위치를 파악하는 것이 우선입니다. },
-                { unit 1. 노선측량 계획수립, question 노선측량에서 지형도 상에 여러 개의 후보 노선을 긋고 비교 검토하는 단계는, options [선점, 답사, 도상선정, 공정관리], answer 2, hint 지도를 펼쳐놓고 최적의 경로를 찾아보는 과정입니다. },
-                { unit 1. 노선측량 계획수립, question 노선측량 계획 시 고려해야 할 경제적 요소가 아닌 것은, options [공사비 최소화, 유지관리의 용이성, 장비의 브랜드명, 보상비 절감], answer 2, hint 측량 결과에 영향을 주지 않는 개인적 취향이나 브랜드는 계획 요소가 아닙니다. },
-                { unit 1. 노선측량 계획수립, question 도로 건설 시 급격한 방향 전환을 피하기 위해 설계 시 설정하는 핵심 요소는, options [지반고, 곡선반경(R), 토량, 프리즘 높이], answer 1, hint 곡선이 완만할수록 차량 주행이 안전해집니다. },
-                { unit 1. 노선측량 계획수립, question 측량 작업계획서에 반드시 포함되어야 할 '안전관리' 항목은, options [작업자의 점심 메뉴, 교통통제 계획 및 안전 장구 착용, 사무실 비품 목록, 기계 수리점 전화번호], answer 1, hint 도로변 작업이 많으므로 교통 안전이 최우선입니다. },
-                { unit 2. 외업준비, question 노선측량에서 측점 간의 거리 간격을 나타내는 단위로 주로 사용되는 것은, options [미터(m) 단위의 체인(Chain) 또는 스테이션(STA), 인치(inch), 평, 야드(yard)], answer 0, hint 도로의 중심선을 따라 일정 간격(예 20m)마다 번호를 붙입니다. },
-                { unit 2. 외업준비, question 노선측량용 토탈스테이션 점검 시 특히 주의 깊게 확인해야 할 항목은, options [배터리 잔량, 수평축 및 연직축의 직교성, 케이스 색상, 삼각대 높이], answer 1, hint 긴 노선을 측정할 때 축의 미세한 오차가 누적될 수 있습니다. },
-                { unit 2. 외업준비, question 중심선 측량을 위해 현장에 설치하는 목재나 금속제 표지는, options [폴(Pole), 항목(Stake말뚝), 레벨, 줄자], answer 1, hint 측량한 지점을 나중에 공사할 때 알 수 있도록 땅에 박아둡니다. },
-                { unit 2. 외업준비, question 노선측량 외업 전 반드시 확인해야 할 인근 국가기준점은, options [삼각점 및 수준점(BM), 경계점, 등대, 기상대], answer 0, hint 평면 위치와 높이 기준을 잡기 위해 필수입니다. },
-                { unit 2. 외업준비, question 작업 전 장비의 '상수 보정' 값이 제대로 입력되었는지 확인해야 하는 이유는, options [화면을 밝게 하려고, 거리 측정 오차를 방지하기 위해, 소리를 크게 하려고, 저장 용량을 늘리려고], answer 1, hint 프리즘 상수 등은 거리 데이터의 정확도에 직결됩니다. },
-                { unit 3. 노선 관측, question 노선의 높낮이 변화를 파악하기 위해 중심선을 따라 수행하는 측량은, options [종단측량, 횡단측량, 평면측량, 중력측량], answer 0, hint 도로의 길 방향으로 오르막과 내리막을 잽니다. },
-                { unit 3. 노선 관측, question 도로의 폭과 좌우 지형의 변화를 알기 위해 중심선에 직각 방향으로 수행하는 측량은, options [종단측량, 횡단측량, 삼각측량, 항공측량], answer 1, hint 길의 너비 방향 단면을 파악하는 과정입니다. },
-                { unit 3. 노선 관측, question 노선이 방향을 바꿀 때 두 직선 사이에 삽입하는 곡선 중 가장 기본적인 형태는, options [단곡선(Simple Curve), 완화곡선, 종단곡선, 배향곡선], answer 0, hint 하나의 반지름을 가진 원호 모양의 곡선입니다. },
-                { unit 3. 노선 관측, question 차량이 곡선부에 진입할 때 원심력을 줄이기 위해 직선과 원곡선 사이에 설치하는 곡선은, options [완화곡선(Transition Curve), 역곡선, 복합곡선, 현수선], answer 0, hint 곡률이 점진적으로 변하여 승차감을 좋게 합니다. },
-                { unit 3. 노선 관측, question 곡선의 시점(BC)과 종점(EC)을 설치하기 위해 필요한 각은, options [편각(Deflection Angle), 연직각, 방위각, 교각(Intersection Angle)], answer 3, hint 두 직선 노선이 만나는 지점에서 꺾이는 각도입니다. },
-                { unit 4. 성과 정리, question 노선측량 성과 정리에서 '종단면도'의 가로 축과 세로 축이 나타내는 것은, options [가로 거리, 세로 지반고, 가로 시간, 세로 속도, 가로 각도, 세로 거리, 가로 지반고, 세로 거리], answer 0, hint 거리와 높이의 관계를 그래프처럼 나타냅니다. },
-                { unit 4. 성과 정리, question 종·횡단면도를 작성하여 계산하는 가장 중요한 공사항목은, options [노동 시간, 토공량(깎기 및 쌓기량), 기름값, 나무 개수], answer 1, hint 흙을 얼마나 파내고(절토) 쌓아야(성토) 하는지 계산합니다. },
-                { unit 4. 성과 정리, question 수치 데이터 정리 시 관측값의 오차가 허용 범위를 초과했을 때 조치는, options [그냥 사용한다, 데이터를 임의로 수정한다, 재측량을 실시한다, 평균값을 대충 적는다], answer 2, hint 측량 성과의 신뢰성을 위해 다시 관측해야 합니다. },
-                { unit 4. 성과 정리, question 노선측량의 최종 성과물에 반드시 포함되어야 하는 도면이 아닌 것은, options [평면도, 종단면도, 횡단면도, 세계 전도], answer 3, hint 노선의 상세 정보를 담은 3대 도면(평면, 종단, 횡단)이 핵심입니다. },
-                { unit 4. 성과 정리, question CAD를 이용한 노선 설계 시 수치 데이터 전송의 장점은, options [컴퓨터가 알아서 공사해준다, 수동 입력에 의한 오타를 방지하고 정확한 도면 생성이 가능하다, 측량 장비가 가벼워진다, 인건비가 전혀 들지 않는다], answer 1, hint 데이터 로거의 값을 직접 불러와서 실수 없이 처리합니다. }
+            "노선측량": [
+                { unit: "1. 노선측량 계획수립", question: "노선측량의 단계별 순서 중 가장 먼저 이루어져야 하는 것은?", options: ["답사(Reconnaissance)", "예측(Preliminary Survey)", "실측(Location Survey)", "선정(Selection)"], answer: 0, hint: "현장을 직접 눈으로 확인하여 노선의 개략적인 위치를 파악하는 것이 우선입니다." },
+                { unit: "1. 노선측량 계획수립", question: "노선측량에서 지형도 상에 여러 개의 후보 노선을 긋고 비교 검토하는 단계는?", options: ["선점", "답사", "도상선정", "공정관리"], answer: 2, hint: "지도를 펼쳐놓고 최적의 경로를 찾아보는 과정입니다." },
+                { unit: "1. 노선측량 계획수립", question: "노선측량 계획 시 고려해야 할 경제적 요소가 아닌 것은?", options: ["공사비 최소화", "유지관리의 용이성", "장비의 브랜드명", "보상비 절감"], answer: 2, hint: "측량 결과에 영향을 주지 않는 개인적 취향이나 브랜드는 계획 요소가 아닙니다." },
+                { unit: "1. 노선측량 계획수립", question: "도로 건설 시 급격한 방향 전환을 피하기 위해 설계 시 설정하는 핵심 요소는?", options: ["지반고", "곡선반경(R)", "토량", "프리즘 높이"], answer: 1, hint: "곡선이 완만할수록 차량 주행이 안전해집니다." },
+                { unit: "1. 노선측량 계획수립", question: "측량 작업계획서에 반드시 포함되어야 할 '안전관리' 항목은?", options: ["작업자의 점심 메뉴", "교통통제 계획 및 안전 장구 착용", "사무실 비품 목록", "기계 수리점 전화번호"], answer: 1, hint: "도로변 작업이 많으므로 교통 안전이 최우선입니다." },
+                { unit: "2. 외업준비", question: "노선측량에서 측점 간의 거리 간격을 나타내는 단위로 주로 사용되는 것은?", options: ["미터(m) 단위의 체인(Chain) 또는 스테이션(STA)", "인치(inch)", "평", "야드(yard)"], answer: 0, hint: "도로의 중심선을 따라 일정 간격(예: 20m)마다 번호를 붙입니다." },
+                { unit: "2. 외업준비", question: "노선측량용 토탈스테이션 점검 시 특히 주의 깊게 확인해야 할 항목은?", options: ["배터리 잔량", "수평축 및 연직축의 직교성", "케이스 색상", "삼각대 높이"], answer: 1, hint: "긴 노선을 측정할 때 축의 미세한 오차가 누적될 수 있습니다." },
+                { unit: "2. 외업준비", question: "중심선 측량을 위해 현장에 설치하는 목재나 금속제 표지는?", options: ["폴(Pole)", "항목(Stake/말뚝)", "레벨", "줄자"], answer: 1, hint: "측량한 지점을 나중에 공사할 때 알 수 있도록 땅에 박아둡니다." },
+                { unit: "2. 외업준비", question: "노선측량 외업 전 반드시 확인해야 할 인근 국가기준점은?", options: ["삼각점 및 수준점(BM)", "경계점", "등대", "기상대"], answer: 0, hint: "평면 위치와 높이 기준을 잡기 위해 필수입니다." },
+                { unit: "2. 외업준비", question: "작업 전 장비의 '상수 보정' 값이 제대로 입력되었는지 확인해야 하는 이유는?", options: ["화면을 밝게 하려고", "거리 측정 오차를 방지하기 위해", "소리를 크게 하려고", "저장 용량을 늘리려고"], answer: 1, hint: "프리즘 상수 등은 거리 데이터의 정확도에 직결됩니다." },
+                { unit: "3. 노선 관측", question: "노선의 높낮이 변화를 파악하기 위해 중심선을 따라 수행하는 측량은?", options: ["종단측량", "횡단측량", "평면측량", "중력측량"], answer: 0, hint: "도로의 길 방향으로 오르막과 내리막을 잽니다." },
+                { unit: "3. 노선 관측", question: "도로의 폭과 좌우 지형의 변화를 알기 위해 중심선에 직각 방향으로 수행하는 측량은?", options: ["종단측량", "횡단측량", "삼각측량", "항공측량"], answer: 1, hint: "길의 너비 방향 단면을 파악하는 과정입니다." },
+                { unit: "3. 노선 관측", question: "노선이 방향을 바꿀 때 두 직선 사이에 삽입하는 곡선 중 가장 기본적인 형태는?", options: ["단곡선(Simple Curve)", "완화곡선", "종단곡선", "배향곡선"], answer: 0, hint: "하나의 반지름을 가진 원호 모양의 곡선입니다." },
+                { unit: "3. 노선 관측", question: "차량이 곡선부에 진입할 때 원심력을 줄이기 위해 직선과 원곡선 사이에 설치하는 곡선은?", options: ["완화곡선(Transition Curve)", "역곡선", "복합곡선", "현수선"], answer: 0, hint: "곡률이 점진적으로 변하여 승차감을 좋게 합니다." },
+                { unit: "3. 노선 관측", question: "곡선의 시점(BC)과 종점(EC)을 설치하기 위해 필요한 각은?", options: ["편각(Deflection Angle)", "연직각", "방위각", "교각(Intersection Angle)"], answer: 3, hint: "두 직선 노선이 만나는 지점에서 꺾이는 각도입니다." },
+                { unit: "4. 성과 정리", question: "노선측량 성과 정리에서 '종단면도'의 가로 축과 세로 축이 나타내는 것은?", options: ["가로: 거리, 세로: 지반고", "가로: 시간, 세로: 속도", "가로: 각도, 세로: 거리", "가로: 지반고, 세로: 거리"], answer: 0, hint: "거리와 높이의 관계를 그래프처럼 나타냅니다." },
+                { unit: "4. 성과 정리", question: "종·횡단면도를 작성하여 계산하는 가장 중요한 공사항목은?", options: ["노동 시간", "토공량(깎기 및 쌓기량)", "기름값", "나무 개수"], answer: 1, hint: "흙을 얼마나 파내고(절토) 쌓아야(성토) 하는지 계산합니다." },
+                { unit: "4. 성과 정리", question: "수치 데이터 정리 시 관측값의 오차가 허용 범위를 초과했을 때 조치는?", options: ["그냥 사용한다", "데이터를 임의로 수정한다", "재측량을 실시한다", "평균값을 대충 적는다"], answer: 2, hint: "측량 성과의 신뢰성을 위해 다시 관측해야 합니다." },
+                { unit: "4. 성과 정리", question: "노선측량의 최종 성과물에 반드시 포함되어야 하는 도면이 아닌 것은?", options: ["평면도", "종단면도", "횡단면도", "세계 전도"], answer: 3, hint: "노선의 상세 정보를 담은 3대 도면(평면, 종단, 횡단)이 핵심입니다." },
+                { unit: "4. 성과 정리", question: "CAD를 이용한 노선 설계 시 수치 데이터 전송의 장점은?", options: ["컴퓨터가 알아서 공사해준다", "수동 입력에 의한 오타를 방지하고 정확한 도면 생성이 가능하다", "측량 장비가 가벼워진다", "인건비가 전혀 들지 않는다"], answer: 1, hint: "데이터 로거의 값을 직접 불러와서 실수 없이 처리합니다." }
             ]
         };
 
-         상태 관리 변수
+        // 상태 관리 변수
         let currentQuizList = [];
         let currentIdx = 0;
-        let userAnswers = [];  사용자가 선택한 인덱스 저장
-        let currentCategory = ;
+        let userAnswers = []; // 사용자가 선택한 인덱스 저장
+        let currentCategory = "";
 
-         UI 제어 함수
+        // UI 제어 함수
         function showDashboard() {
             document.getElementById('step-1').classList.add('hidden');
             document.getElementById('step-2').classList.remove('hidden');
@@ -269,7 +269,7 @@ body class=p-4 mdp-8
         function renderQuestion() {
             const quiz = currentQuizList[currentIdx];
             document.getElementById('quiz-category').textContent = currentCategory;
-            document.getElementById('quiz-progress').textContent = `${currentIdx + 1}  ${currentQuizList.length}`;
+            document.getElementById('quiz-progress').textContent = `${currentIdx + 1} / ${currentQuizList.length}`;
             document.getElementById('quiz-unit').textContent = quiz.unit;
             document.getElementById('quiz-question').textContent = quiz.question;
             document.getElementById('hint-text').textContent = quiz.hint;
@@ -278,24 +278,24 @@ body class=p-4 mdp-8
             const optionsContainer = document.getElementById('quiz-options');
             optionsContainer.innerHTML = '';
 
-            quiz.options.forEach((opt, i) = {
+            quiz.options.forEach((opt, i) => {
                 const btn = document.createElement('button');
-                btn.className = `w-full text-left p-4 rounded-xl border-2 transition-all ${userAnswers[currentIdx] === i  'border-indigo-600 bg-indigo-50 font-bold'  'border-gray-200 hoverborder-indigo-300'}`;
-                btn.innerHTML = `span class=inline-block w-8 h-8 rounded-full bg-gray-100 text-center leading-8 mr-3 text-sm${i + 1}span ${opt}`;
-                btn.onclick = () = selectOption(i);
+                btn.className = `w-full text-left p-4 rounded-xl border-2 transition-all ${userAnswers[currentIdx] === i ? 'border-indigo-600 bg-indigo-50 font-bold' : 'border-gray-200 hover:border-indigo-300'}`;
+                btn.innerHTML = `<span class="inline-block w-8 h-8 rounded-full bg-gray-100 text-center leading-8 mr-3 text-sm">${i + 1}</span> ${opt}`;
+                btn.onclick = () => selectOption(i);
                 optionsContainer.appendChild(btn);
             });
 
-             힌트 버튼 (원하면 표시)
+            // 힌트 버튼 (원하면 표시)
             const hintToggle = document.createElement('button');
-            hintToggle.className = text-xs text-gray-400 mt-4 block mx-auto underline;
-            hintToggle.textContent = 힌트 보기;
-            hintToggle.onclick = () = document.getElementById('hint-box').classList.remove('hidden');
+            hintToggle.className = "text-xs text-gray-400 mt-4 block mx-auto underline";
+            hintToggle.textContent = "힌트 보기";
+            hintToggle.onclick = () => document.getElementById('hint-box').classList.remove('hidden');
             optionsContainer.appendChild(hintToggle);
 
-             이전 버튼 활성화 제어
+            // 이전 버튼 활성화 제어
             document.getElementById('btn-prev').disabled = currentIdx === 0;
-            document.getElementById('btn-prev').style.opacity = currentIdx === 0  0.5  1;
+            document.getElementById('btn-prev').style.opacity = currentIdx === 0 ? "0.5" : "1";
         }
 
         function selectOption(idx) {
@@ -304,18 +304,18 @@ body class=p-4 mdp-8
         }
 
         function nextQuestion() {
-            if (currentIdx  currentQuizList.length - 1) {
+            if (currentIdx < currentQuizList.length - 1) {
                 currentIdx++;
                 renderQuestion();
             } else {
-                if(confirm(마지막 문제입니다. 시험을 종료하고 결과를 확인하시겠습니까)) {
+                if(confirm("마지막 문제입니다. 시험을 종료하고 결과를 확인하시겠습니까?")) {
                     finishQuiz();
                 }
             }
         }
 
         function prevQuestion() {
-            if (currentIdx  0) {
+            if (currentIdx > 0) {
                 currentIdx--;
                 renderQuestion();
             }
@@ -326,21 +326,21 @@ body class=p-4 mdp-8
             let correctCount = 0;
             let wrongList = [];
 
-            currentQuizList.forEach((q, i) = {
+            currentQuizList.forEach((q, i) => {
                 if (userAnswers[i] === q.answer) {
                     correctCount++;
                 } else {
                     wrongList.push({
-                        qNum i + 1,
-                        question q.question,
-                        userAns userAnswers[i] !== null  q.options[userAnswers[i]]  미응답,
-                        correctAns q.options[q.answer],
-                        hint q.hint
+                        qNum: i + 1,
+                        question: q.question,
+                        userAns: userAnswers[i] !== null ? q.options[userAnswers[i]] : "미응답",
+                        correctAns: q.options[q.answer],
+                        hint: q.hint
                     });
                 }
             });
 
-             결과 화면 데이터 바인딩
+            // 결과 화면 데이터 바인딩
             document.getElementById('res-total').textContent = total;
             document.getElementById('res-correct').textContent = correctCount;
             document.getElementById('res-wrong').textContent = total - correctCount;
@@ -349,29 +349,29 @@ body class=p-4 mdp-8
             listEl.innerHTML = '';
 
             if (wrongList.length === 0) {
-                listEl.innerHTML = 'p class=text-green-600 font-bold text-center py-4축하합니다! 모든 문제를 맞히셨습니다.p';
+                listEl.innerHTML = '<p class="text-green-600 font-bold text-center py-4">축하합니다! 모든 문제를 맞히셨습니다.</p>';
             } else {
-                wrongList.forEach(item = {
+                wrongList.forEach(item => {
                     const div = document.createElement('div');
-                    div.className = bg-white border border-red-100 rounded-lg p-4 shadow-sm;
+                    div.className = "bg-white border border-red-100 rounded-lg p-4 shadow-sm";
                     div.innerHTML = `
-                        p class=font-bold text-gray-800 mb-1문제 ${item.qNum}. ${item.question}p
-                        div class=text-sm space-y-1
-                            p class=text-red-500내 답변 ${item.userAns}p
-                            p class=text-blue-600 font-bold정답 ${item.correctAns}p
-                            p class=text-gray-500 mt-2 p-2 bg-gray-50 rounded italic💡 해설 ${item.hint}p
-                        div
+                        <p class="font-bold text-gray-800 mb-1">문제 ${item.qNum}. ${item.question}</p>
+                        <div class="text-sm space-y-1">
+                            <p class="text-red-500">내 답변: ${item.userAns}</p>
+                            <p class="text-blue-600 font-bold">정답: ${item.correctAns}</p>
+                            <p class="text-gray-500 mt-2 p-2 bg-gray-50 rounded italic">💡 해설: ${item.hint}</p>
+                        </div>
                     `;
                     listEl.appendChild(div);
                 });
             }
 
-             화면 전환
+            // 화면 전환
             document.getElementById('step-3').classList.add('hidden');
             document.getElementById('quiz-footer').classList.add('hidden');
             document.getElementById('step-4').classList.remove('hidden');
             window.scrollTo(0,0);
         }
-    script
-body
-html
+    </script>
+</body>
+</html>
